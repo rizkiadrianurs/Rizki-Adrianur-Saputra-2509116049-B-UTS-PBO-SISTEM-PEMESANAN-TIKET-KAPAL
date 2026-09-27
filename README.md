@@ -130,21 +130,25 @@ Program menampilkan menu utama secara berulang menggunakan perulangan `do-while`
 - Sistem menampilkan pesan "Program selesai." dan "Terima kasih."
 - Nilai `pilihan` menjadi `5`, sehingga kondisi pada perulangan `do-while` tidak terpenuhi dan program berhenti.
 
-### Cara Kerja Konsep OOP dalam Sistem
+## Cara Kerja Konsep OOP dalam Sistem
 
-**Encapsulation** — Semua atribut kelas (`Kapal`, `KapalVIP`, `KapalEkonomi`, `Penumpang`, `Pemesanan`) bersifat `private`, hanya dapat diakses melalui getter/setter yang di dalamnya juga terdapat validasi (contoh: `setHargaTiket()` menolak nilai ≤ 0).
+| Konsep | Penerapan dalam Sistem |
+|---|---|
+| **Encapsulation** | Semua atribut pada kelas `Kapal`, `KapalVIP`, `KapalEkonomi`, `Penumpang`, dan `Pemesanan` dibuat `private`. Atribut hanya dapat diakses melalui getter dan setter. Setter juga dilengkapi validasi, misalnya `setHargaTiket()` menolak nilai kurang dari atau sama dengan 0. |
+| **Inheritance** | Kelas `Kapal` berperan sebagai **superclass**, sedangkan `KapalEkonomi` dan `KapalVIP` sebagai **subclass**. Kedua subclass mewarisi atribut dan method dari `Kapal` menggunakan `extends`, serta memanggil constructor superclass dengan `super(namaKapal, tujuan, hargaTiket)`. |
+| **Polymorphism** | Method `tampilkanInfo()` dibuat pada kelas `Kapal`, kemudian di-override oleh `KapalEkonomi` dan `KapalVIP`. Saat `p.getKapal().tampilkanInfo()` dipanggil, Java akan menjalankan method sesuai dengan jenis objek kapal saat runtime. |
+| **Validasi Input** | Validasi dilakukan pada **view** dan **model**. View memeriksa input saat pengguna memasukkan data, sedangkan setter pada model menjadi pengaman agar data yang disimpan tetap valid. `try-catch` digunakan untuk menangani kesalahan input angka seperti `NumberFormatException`. |
+| **Dummy Data** | Method `isiDummyData()` dipanggil melalui constructor `PemesananController`. Dengan demikian, `ArrayList` telah berisi **2 data pemesanan** ketika program pertama kali dijalankan. |
+| **Struktur MVC** | Program menggunakan pola **MVC (Model, View, Controller)**. Package `model` menangani data dan objek, `view` menangani tampilan serta input pengguna, `controller` mengatur alur proses, sedangkan `main` menjadi titik awal program. |
 
-**Inheritance** — Program memiliki 1 superclass (`Kapal`) dan 2 subclass (`KapalEkonomi`, `KapalVIP`) yang mewarisi atribut dan method superclass menggunakan `extends`, serta memanggil constructor superclass dengan `super(namaKapal, tujuan, hargaTiket)`.
+### Alur Sederhana Penerapan OOP
 
-**Polymorphism (Method Overriding)** — Method `tampilkanInfo()` didefinisikan di `Kapal`, lalu di-override di `KapalEkonomi` dan `KapalVIP` agar menampilkan fasilitas sesuai jenis kapal. Pemanggilan `p.getKapal().tampilkanInfo()` pada `PemesananView` otomatis memilih versi method yang sesuai dengan jenis objek sebenarnya saat runtime.
+1. **Model** → menyimpan data dan menerapkan konsep OOP seperti encapsulation, inheritance, dan polymorphism.
+2. **View** → menerima input pengguna dan menampilkan informasi program.
+3. **Controller** → menghubungkan `View` dengan `Model` serta mengatur proses pemesanan.
+4. **Main** → menjalankan program dengan membuat objek dan memulai sistem.
 
-**Validasi Input** — Diterapkan di dua lapisan: pada view (saat mengetik) dan pada setter model (lapisan pengaman data). Input tidak valid akan meminta pengguna mengulang, dan `try-catch` digunakan untuk menangani `NumberFormatException`.
-
-**Dummy Data** — Method `isiDummyData()` dipanggil di constructor `PemesananController` sehingga `ArrayList` sudah berisi 2 data saat program pertama kali dijalankan.
-
-**Struktur MVC** — Program dipisah ke dalam package `model`, `view`, `controller`, dan `main` agar logika data, tampilan, dan alur program tidak tercampur (lihat tabel Struktur Kelas).
-
----
+Dengan struktur tersebut, setiap bagian program memiliki tugas yang jelas sehingga **kode lebih terorganisir, data lebih terkontrol, dan konsep OOP dapat diterapkan secara langsung dalam sistem**.
 
 ## 3. Penjelasan Gambar (Screenshot Output)
 
